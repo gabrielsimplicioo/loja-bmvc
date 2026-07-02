@@ -1,4 +1,4 @@
-// TechNode - interacoes da pagina inicial
+// interacoes da pagina inicial
 
 document.addEventListener('DOMContentLoaded', function () {
     startClock();

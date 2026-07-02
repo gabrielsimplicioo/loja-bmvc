@@ -2,7 +2,7 @@ from bottle import template
 
 
 class Application():
-    """Controlador principal da loja TechNode (BMVC nivel 1)."""
+    """Controlador principal da loja TechNode (nivel 1)."""
 
     def __init__(self):
         self.pages = {
