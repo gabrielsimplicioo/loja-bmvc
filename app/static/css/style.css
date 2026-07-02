@@ -1,0 +1,179 @@
+/* TechNode - estilos da loja */
+
+:root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --accent: #00d9a3;
+    --accent-soft: rgba(0, 217, 163, 0.15);
+    --text: #e7e9ec;
+    --muted: #9aa0a8;
+    --border: #2a2e37;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background-color: var(--panel);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.brand span.dot {
+    color: var(--accent);
+}
+
+nav.mainnav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 28px;
+    font-size: 0.95em;
+    transition: color 0.2s ease;
+}
+
+nav.mainnav a:hover {
+    color: var(--accent);
+}
+
+.hero {
+    padding: 80px 40px;
+    text-align: center;
+    background: radial-gradient(circle at top, var(--accent-soft), transparent 60%);
+}
+
+.hero h1 {
+    font-size: 2.6em;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 auto 28px auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 26px;
+    background-color: var(--accent);
+    color: #06110d;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px var(--accent-soft);
+}
+
+.section {
+    padding: 60px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 1.6em;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--accent);
+    padding-left: 14px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--accent);
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 0.95em;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 0.75em;
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+}
+
+footer {
+    padding: 30px 40px;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-size: 0.9em;
+}
+
+#clock {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: var(--panel);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
