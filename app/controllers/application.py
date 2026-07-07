@@ -1,7 +1,7 @@
-from bottle import template
+from app.controllers.controller_base import ControllerBase
 
 
-class Application():
+class Application(ControllerBase):
     """Controlador principal da loja TechNode (nivel 1)."""
 
     def __init__(self):
@@ -16,4 +16,4 @@ class Application():
         return content(parameter)
 
     def home(self):
-        return template('app/views/html/home')
+        return self.render_view('app/views/html/home')

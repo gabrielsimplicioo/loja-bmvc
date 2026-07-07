@@ -12,7 +12,8 @@
     <header class="topbar">
         <div class="brand"><span class="dot">&#9679;</span> TechNode</div>
         <nav class="mainnav">
-            <a href="#produtos">Produtos</a>
+            <a href="#produtos">Destaques</a>
+            <a href="/produtos">Catalogo completo</a>
             <a href="#sobre">Sobre</a>
             <a href="#contato">Contato</a>
         </nav>
@@ -56,9 +57,10 @@
             </div>
         </div>
         <p style="color: var(--muted); margin-top: 18px; font-size: 0.9em;">
-            O cadastro completo de produtos (criar, editar e remover itens) sera
-            disponibilizado na proxima etapa do projeto (BMVC Nivel II).
+            Estes sao apenas destaques. Acesse o catalogo completo para ver, cadastrar,
+            editar e remover produtos do estoque da TechNode.
         </p>
+        <a class="btn btn-secondary" href="/produtos" style="margin-top: 10px;">Ver catalogo completo</a>
     </section>
 
     <section class="section" id="sobre">
