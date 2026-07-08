@@ -89,3 +89,4 @@ class ProdutoRepository(RepositorioBase):
             produto = self._encontrar(produtos, id)
             produtos.remove(produto)
             self._salvar(produtos)
+            return produto

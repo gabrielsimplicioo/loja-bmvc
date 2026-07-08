@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar - TechNode</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="/static/js/login.js" defer></script>
 </head>
 <body>
 
@@ -29,7 +30,10 @@
             <input type="text" id="username" name="username" required autofocus>
 
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required>
+            <div class="campo-senha">
+                <input type="password" id="senha" name="senha" required>
+                <button type="button" id="alternar-senha" class="link-btn">Mostrar</button>
+            </div>
 
             <div class="form-acoes">
                 <button type="submit">Entrar</button>

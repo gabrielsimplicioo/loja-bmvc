@@ -54,6 +54,25 @@ As rotas `/produtos/novo`, `POST /produtos`, `/produtos/<id>/editar`,
 (decorator `login_obrigatorio`); sem login, o usuario e redirecionado para
 `/login`.
 
+## Nivel IV (atual)
+
+O catalogo (`/produtos`) passou a atualizar sozinho, em tempo real, sem
+recarregar a pagina. Sempre que um produto e criado, editado ou excluido,
+o servidor avisa todo mundo que estiver com o catalogo aberto — inclusive
+visitantes sem login.
+
+Isso e feito com um servidor Websocket proprio
+(`app/tempo_real/servidor_estoque.py`, classe `ServidorEstoque`), que roda
+numa thread separada do Bottle, numa segunda porta (8081). O
+`ProdutosController` recebe essa instancia por injecao de dependencia e,
+apos cada operacao do CRUD, chama `avisar(...)`; o front-end
+(`app/static/js/produtos.js`) mantem uma conexao Websocket aberta e
+atualiza a tabela e o contador de visitantes na hora, sem F5.
+
+Nenhum banco de dados ou fila externa foi adicionado: o Websocket so
+transmite eventos, quem persiste os dados continua sendo o
+`ProdutoRepository` (arquivo JSON).
+
 ## Como executar
 
 ```bash

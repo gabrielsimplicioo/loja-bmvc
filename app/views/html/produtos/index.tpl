@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo de Produtos - TechNode</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="/static/js/main.js"></script>
     <script src="/static/js/produtos.js" defer></script>
 </head>
 <body>
@@ -23,7 +24,7 @@
         </nav>
     </header>
 
-    <section class="section">
+    <section class="section" id="catalogo">
         <h2>Catalogo de produtos</h2>
 
         % if usuario_logado:
@@ -35,7 +36,7 @@
         % end
 
         % if produtos:
-        <table class="tabela-produtos">
+        <table class="tabela-produtos" data-admin="{{'true' if usuario_logado else 'false'}}">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -47,13 +48,13 @@
                     % end
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tabela-produtos-corpo">
                 % for p in produtos:
-                <tr>
-                    <td>{{p.nome}}</td>
-                    <td>{{p.categoria.value}}</td>
-                    <td>{{p.preco_formatado}}</td>
-                    <td>{{p.estoque}}</td>
+                <tr data-id="{{p.id}}">
+                    <td class="col-nome">{{p.nome}}</td>
+                    <td class="col-categoria">{{p.categoria.value}}</td>
+                    <td class="col-preco">{{p.preco_formatado}}</td>
+                    <td class="col-estoque">{{p.estoque}}</td>
                     % if usuario_logado:
                     <td>
                         <a href="/produtos/{{p.id}}/editar">Editar</a>

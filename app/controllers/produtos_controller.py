@@ -16,16 +16,19 @@ MENSAGENS_FLASH = {
 
 
 class ProdutosController(ControllerBase):
-    """Controlador do CRUD de produtos da TechNode (BMVC Nivel II).
+    """Controlador do CRUD de produtos da TechNode.
 
     Nao valida dados por conta propria: delega essa responsabilidade ao
     model (Produto), que e quem conhece as proprias regras de negocio.
-    Aqui apenas orquestra o repositorio e traduz os erros de dominio em
-    respostas HTTP.
+    Aqui apenas orquestra o repositorio, traduz os erros de dominio em
+    respostas HTTP e avisa o ServidorEstoque quando o catalogo muda, para
+    que quem estiver com a pagina aberta veja a mudanca sem precisar
+    recarregar (BMVC Nivel IV).
     """
 
-    def __init__(self):
+    def __init__(self, servidor_estoque=None):
         self.repo = ProdutoRepository()
+        self.ws = servidor_estoque
 
     def index(self):
         produtos = self.repo.listar()
@@ -50,9 +53,10 @@ class ProdutosController(ControllerBase):
     def criar(self):
         dados = self._dados_formulario()
         try:
-            self.repo.criar(**dados)
+            produto = self.repo.criar(**dados)
         except ProdutoInvalidoError as erro:
             return redirect(f'/produtos/novo?erro={quote(str(erro))}')
+        self._avisar('criado', produto)
         return redirect('/produtos?msg=criado')
 
     @login_obrigatorio
@@ -72,20 +76,26 @@ class ProdutosController(ControllerBase):
     def atualizar(self, id):
         dados = self._dados_formulario()
         try:
-            self.repo.atualizar(id, **dados)
+            produto = self.repo.atualizar(id, **dados)
         except ProdutoNaoEncontradoError:
             return redirect('/produtos?msg=nao_encontrado')
         except ProdutoInvalidoError as erro:
             return redirect(f'/produtos/{id}/editar?erro={quote(str(erro))}')
+        self._avisar('atualizado', produto)
         return redirect('/produtos?msg=atualizado')
 
     @login_obrigatorio
     def excluir(self, id):
         try:
-            self.repo.excluir(id)
+            produto = self.repo.excluir(id)
         except ProdutoNaoEncontradoError:
-            pass
+            return redirect('/produtos?msg=excluido')
+        self._avisar('excluido', produto)
         return redirect('/produtos?msg=excluido')
+
+    def _avisar(self, evento, produto):
+        if self.ws:
+            self.ws.avisar(evento, produto)
 
     def _dados_formulario(self):
         return {
