@@ -6,13 +6,6 @@ import websockets
 
 
 class ServidorEstoque:
-    """Servidor Websocket que avisa o catalogo em tempo real quando o estoque muda.
-
-    O Bottle atende HTTP de forma sincrona numa porta; este servidor roda
-    numa thread separada, com seu proprio loop assincrono, numa segunda
-    porta. Os controllers continuam sincronos e so chamam `avisar(...)`;
-    o agendamento no loop assincrono e feito de forma thread-safe.
-    """
 
     def __init__(self, host='0.0.0.0', porta=8081):
         self.host = host

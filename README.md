@@ -27,7 +27,7 @@ Rotas do CRUD:
 | POST   | `/produtos/<id>`           | Atualiza um produto            |
 | POST   | `/produtos/<id>/excluir`  | Remove um produto              |
 
-## Nivel III (atual)
+## Nivel III
 
 Controle de acesso sobre o mesmo CRUD do Nivel II: o catalogo (`/produtos`)
 continua publico para visualizacao, mas cadastrar, editar e excluir produtos
