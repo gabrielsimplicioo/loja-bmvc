@@ -1,4 +1,5 @@
 from app.controllers.application import Application
+from app.controllers.auth_controller import AuthController
 from app.controllers.produtos_controller import ProdutosController
 from bottle import Bottle, run, static_file
 
@@ -6,6 +7,7 @@ from bottle import Bottle, run, static_file
 app = Bottle()
 ctl = Application()
 produtos_ctl = ProdutosController()
+auth_ctl = AuthController()
 
 
 #-----------------------------------------------------------------------------
@@ -56,6 +58,24 @@ def produtos_atualizar(id):
 @app.route('/produtos/<id:int>/excluir', method='POST')
 def produtos_excluir(id):
     return produtos_ctl.excluir(id)
+
+
+#-----------------------------------------------------------------------------
+# Autenticacao (BMVC Nivel III)
+
+@app.route('/login', method='GET')
+def login_form():
+    return auth_ctl.login_form()
+
+
+@app.route('/login', method='POST')
+def login():
+    return auth_ctl.login()
+
+
+@app.route('/logout', method='POST')
+def logout():
+    return auth_ctl.logout()
 
 
 #-----------------------------------------------------------------------------

@@ -16,6 +16,12 @@
             <a href="/produtos">Catalogo completo</a>
             <a href="#sobre">Sobre</a>
             <a href="#contato">Contato</a>
+            % if usuario_logado:
+            <span class="nav-usuario">Ola, {{usuario_logado}}</span>
+            <form method="POST" action="/logout" class="form-logout"><button type="submit" class="link-btn">Sair</button></form>
+            % else:
+            <a href="/login">Entrar</a>
+            % end
         </nav>
     </header>
 

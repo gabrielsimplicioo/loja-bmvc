@@ -2,7 +2,7 @@ from urllib.parse import quote
 
 from bottle import redirect, request
 
-from app.controllers.controller_base import ControllerBase
+from app.controllers.controller_base import ControllerBase, login_obrigatorio
 from app.models.categoria import Categoria
 from app.models.exceptions import ProdutoInvalidoError, ProdutoNaoEncontradoError
 from app.models.produto_repository import ProdutoRepository
@@ -37,6 +37,7 @@ class ProdutosController(ControllerBase):
             texto_flash=texto_flash,
         )
 
+    @login_obrigatorio
     def novo(self):
         return self.render_view(
             'app/views/html/produtos/form',
@@ -45,6 +46,7 @@ class ProdutosController(ControllerBase):
             erro=request.query.erro or None,
         )
 
+    @login_obrigatorio
     def criar(self):
         dados = self._dados_formulario()
         try:
@@ -53,6 +55,7 @@ class ProdutosController(ControllerBase):
             return redirect(f'/produtos/novo?erro={quote(str(erro))}')
         return redirect('/produtos?msg=criado')
 
+    @login_obrigatorio
     def editar(self, id):
         try:
             produto = self.repo.buscar(id)
@@ -65,6 +68,7 @@ class ProdutosController(ControllerBase):
             erro=request.query.erro or None,
         )
 
+    @login_obrigatorio
     def atualizar(self, id):
         dados = self._dados_formulario()
         try:
@@ -75,6 +79,7 @@ class ProdutosController(ControllerBase):
             return redirect(f'/produtos/{id}/editar?erro={quote(str(erro))}')
         return redirect('/produtos?msg=atualizado')
 
+    @login_obrigatorio
     def excluir(self, id):
         try:
             self.repo.excluir(id)

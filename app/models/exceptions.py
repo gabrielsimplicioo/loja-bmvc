@@ -8,3 +8,7 @@ class ProdutoInvalidoError(TechNodeError):
 
 class ProdutoNaoEncontradoError(TechNodeError):
     """Levantado quando um produto buscado por id nao existe no repositorio."""
+
+
+class CredenciaisInvalidasError(TechNodeError):
+    """Levantado quando o login e feito com usuario ou senha incorretos."""

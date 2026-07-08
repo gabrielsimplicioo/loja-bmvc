@@ -14,12 +14,21 @@
         <nav class="mainnav">
             <a href="/">Inicio</a>
             <a href="/produtos">Catalogo</a>
+            % if usuario_logado:
+            <span class="nav-usuario">Ola, {{usuario_logado}}</span>
+            <form method="POST" action="/logout" class="form-logout"><button type="submit" class="link-btn">Sair</button></form>
+            % else:
+            <a href="/login">Entrar</a>
+            % end
         </nav>
     </header>
 
     <section class="section">
         <h2>Catalogo de produtos</h2>
+
+        % if usuario_logado:
         <p><a class="btn" href="/produtos/novo">+ Novo produto</a></p>
+        % end
 
         % if texto_flash:
         <div class="flash flash-{{tipo_flash}}">{{texto_flash}}</div>
@@ -33,7 +42,9 @@
                     <th>Categoria</th>
                     <th>Preco</th>
                     <th>Estoque</th>
+                    % if usuario_logado:
                     <th></th>
+                    % end
                 </tr>
             </thead>
             <tbody>
@@ -43,12 +54,14 @@
                     <td>{{p.categoria.value}}</td>
                     <td>{{p.preco_formatado}}</td>
                     <td>{{p.estoque}}</td>
+                    % if usuario_logado:
                     <td>
                         <a href="/produtos/{{p.id}}/editar">Editar</a>
                         <form method="POST" action="/produtos/{{p.id}}/excluir" class="form-excluir">
                             <button type="submit">Excluir</button>
                         </form>
                     </td>
+                    % end
                 </tr>
                 % end
             </tbody>

@@ -14,6 +14,8 @@
         <nav class="mainnav">
             <a href="/">Inicio</a>
             <a href="/produtos">Catalogo</a>
+            <span class="nav-usuario">Ola, {{usuario_logado}}</span>
+            <form method="POST" action="/logout" class="form-logout"><button type="submit" class="link-btn">Sair</button></form>
         </nav>
     </header>
 
