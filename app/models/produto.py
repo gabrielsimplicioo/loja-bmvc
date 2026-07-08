@@ -3,12 +3,7 @@ from app.models.exceptions import ProdutoInvalidoError
 
 
 class Produto:
-    """Representa um produto do catalogo da TechNode.
-
-    Os atributos sao protegidos por properties: nenhum Produto invalido
-    consegue existir em memoria, pois cada setter valida o proprio dado
-    antes de aceita-lo (encapsulamento).
-    """
+    """Produto do catalogo; cada setter valida o proprio dado."""
 
     def __init__(self, id, nome, categoria, preco, estoque, descricao=''):
         self.id = id

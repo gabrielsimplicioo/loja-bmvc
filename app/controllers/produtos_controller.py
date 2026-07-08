@@ -16,15 +16,6 @@ MENSAGENS_FLASH = {
 
 
 class ProdutosController(ControllerBase):
-    """Controlador do CRUD de produtos da TechNode.
-
-    Nao valida dados por conta propria: delega essa responsabilidade ao
-    model (Produto), que e quem conhece as proprias regras de negocio.
-    Aqui apenas orquestra o repositorio, traduz os erros de dominio em
-    respostas HTTP e avisa o ServidorEstoque quando o catalogo muda, para
-    que quem estiver com a pagina aberta veja a mudanca sem precisar
-    recarregar (BMVC Nivel IV).
-    """
 
     def __init__(self, servidor_estoque=None):
         self.repo = ProdutoRepository()

@@ -10,11 +10,7 @@ DATA_FILE = os.path.abspath(
 
 
 class UsuarioRepository:
-    """Persiste usuarios administrativos em arquivo JSON e confere login.
-
-    Segue o mesmo padrao do ProdutoRepository (Nivel II): sem banco de
-    dados, com o arquivo criado e semeado automaticamente na primeira vez.
-    """
+    """Persiste usuarios em arquivo JSON e confere login."""
 
     def __init__(self, data_file=DATA_FILE):
         self.data_file = data_file

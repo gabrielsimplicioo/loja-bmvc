@@ -17,9 +17,9 @@
   },
   {
     "id": 3,
-    "nome": "SSD NVMe 1TB",
+    "nome": "SSD NVMe 2TB",
     "categoria": "Armazenamento",
-    "preco": 459.9,
+    "preco": 900.0,
     "estoque": 30,
     "descricao": "Leitura sequencial de ate 3500MB/s."
   },

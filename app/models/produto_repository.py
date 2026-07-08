@@ -12,11 +12,7 @@ DATA_FILE = os.path.abspath(
 
 
 class ProdutoRepository(RepositorioBase):
-    """Persiste e consulta produtos em um arquivo JSON (sem banco de dados).
-
-    Implementa o contrato de RepositorioBase: e uma especializacao concreta
-    (heranca) da abstracao definida na classe-mae.
-    """
+    """Persiste produtos em arquivo JSON, sem banco de dados."""
 
     _lock = Lock()
 

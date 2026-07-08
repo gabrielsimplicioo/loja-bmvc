@@ -87,10 +87,8 @@ def logout():
 #-----------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    # com reloader ligado, o Bottle reexecuta este arquivo num processo filho;
-    # so o processo que de fato vai servir a aplicacao deve abrir a porta do websocket.
+    # com reloader, o Bottle roda este arquivo de novo num processo filho, so ele abre o websocket
     if not RELOADER or os.environ.get('BOTTLE_CHILD'):
         servidor_estoque.iniciar()
-    # servidor com threads: o WSGIRefServer padrao atende uma conexao por vez e
-    # trava com varias abas abertas ao mesmo tempo (essencial para o Nivel IV).
+    # waitress em vez do servidor padrao, que trava com varias abas abertas ao mesmo tempo
     run(app, server='waitress', host='0.0.0.0', port=8080, debug=True, reloader=RELOADER)

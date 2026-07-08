@@ -8,7 +8,7 @@ from app.models.usuario_repository import UsuarioRepository
 
 
 class AuthController(ControllerBase):
-    """Controlador de login/logout da area administrativa (BMVC Nivel III)."""
+    """Controlador de login e logout."""
 
     def __init__(self):
         self.repo = UsuarioRepository()

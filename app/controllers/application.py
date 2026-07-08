@@ -2,7 +2,7 @@ from app.controllers.controller_base import ControllerBase
 
 
 class Application(ControllerBase):
-    """Controlador principal da loja TechNode (nivel 1)."""
+    """Controlador da pagina inicial."""
 
     def __init__(self):
         self.pages = {

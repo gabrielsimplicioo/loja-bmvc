@@ -3,12 +3,7 @@ import os
 
 
 class Usuario:
-    """Representa um usuario com acesso ao painel administrativo da TechNode.
-
-    A senha nunca e guardada em texto puro: o proprio objeto sabe gerar
-    (`criar`) e conferir (`senha_valida`) seu hash, escondendo os detalhes
-    de hashing de quem o utiliza (encapsulamento).
-    """
+    """Usuario com acesso ao painel administrativo; senha guardada como hash."""
 
     def __init__(self, id, username, senha_hash, salt):
         self.id = id
